@@ -1,0 +1,56 @@
+# --- Secret & kredensial ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+id_rsa*
+credentials*
+secrets*
+application-local.yml
+application-local.properties
+settings.local.json
+
+# --- Memori / konfigurasi agent (lokal) ---
+.agent/
+.agents/
+.claude/
+.gemini/
+.cursor/
+.codex/
+.aider*
+.cursorrules
+AGENT.md
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+PROMPT_TEMPLATES.md
+
+# --- Dokumentasi & tiket (aktifkan bila docs/ hanya lokal) ---
+docs/
+
+
+# --- Output & artefak agent ---
+scratch/
+tmp/
+*.log
+
+# --- Output build & dependency ---
+dist/
+build/
+target/
+out/
+node_modules/
+
+# --- Output/data proses ---
+laporan/
+perbaikan/
+*.dump
+*.sql.bak
+
+# --- File sistem / IDE ---
+.DS_Store
+Thumbs.db
+.idea/
