@@ -45,8 +45,8 @@ out/
 node_modules/
 
 # --- Output/data proses ---
-laporan/
-perbaikan/
+/laporan/
+/perbaikan/
 *.dump
 *.sql.bak
 
