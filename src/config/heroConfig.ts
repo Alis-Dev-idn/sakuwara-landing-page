@@ -19,7 +19,7 @@ export const heroConfig: HeroConfig = {
     href: '',
     isPlaceholder: false,
     ariaLabel: 'Segera hadir di Google Play Store',
-    icon: 'smartphone',
+    icon: 'google-play',
   },
   secondaryCta: {
     id: 'apk',

@@ -21,6 +21,7 @@ export type FeatureIconKey =
 export type PillarIconKey = 'trending-up' | 'wallet' | 'shield-check' | 'file-spreadsheet';
 
 export type ButtonIconKey =
+  | 'google-play'
   | 'smartphone'
   | 'download'
   | 'sparkles'
