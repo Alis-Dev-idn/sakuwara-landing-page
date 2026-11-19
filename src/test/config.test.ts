@@ -1,7 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { assetsConfig, featuresConfig, siteConfig } from '@/config';
+import {
+  assetsConfig,
+  featuresConfig,
+  heroConfig,
+  navbarConfig,
+  pricingConfig,
+  siteConfig,
+} from '@/config';
 
 const EXPECTED_MODULE_IDS = [
   'dashboard',
@@ -17,19 +24,8 @@ const EXPECTED_MODULE_IDS = [
   'notes',
 ];
 
-const MODULES_WITH_VIDEO = [
-  'dashboard',
-  'transaksi',
-  'dompet',
-  'anggaran',
-  'tabungan',
-  'tagihan',
-  'asset',
-  'notes',
-];
-
 describe('Konfigurasi terpusat & pemetaan aset root', () => {
-  it('menyediakan seluruh 11 modul fitur Sakuwara beserta screenshot dan video yang tepat', () => {
+  it('menyediakan seluruh 11 modul fitur Sakuwara berbasis gambar tanpa video', () => {
     expect(featuresConfig).toHaveLength(11);
     const ids = featuresConfig.map((m) => m.id);
     expect(ids).toEqual(EXPECTED_MODULE_IDS);
@@ -43,12 +39,6 @@ describe('Konfigurasi terpusat & pemetaan aset root', () => {
       for (const shot of moduleItem.screenshots) {
         expect(shot.src).toBeTruthy();
         expect(shot.alt.trim().length).toBeGreaterThan(5);
-      }
-
-      if (MODULES_WITH_VIDEO.includes(moduleItem.id)) {
-        expect(moduleItem.videoSrc).toBeTruthy();
-      } else {
-        expect(moduleItem.videoSrc).toBeUndefined();
       }
     }
   });
@@ -67,13 +57,29 @@ describe('Konfigurasi terpusat & pemetaan aset root', () => {
     }
   });
 
-  it('memiliki teks terpusat lengkap pada siteConfig tanpa string penting kosong', () => {
+  it('memiliki config terpecah per lokasi yang lengkap termasuk navbar, frame HP, ikon tombol, dan harga', () => {
     expect(siteConfig.seo.title).toContain('Sakuwara');
-    expect(siteConfig.navbar.links.length).toBeGreaterThanOrEqual(3);
-    expect(siteConfig.pillars.items).toHaveLength(4);
-    expect(siteConfig.howItWorks.steps).toHaveLength(3);
-    expect(siteConfig.faq.items.length).toBeGreaterThanOrEqual(4);
-    expect(siteConfig.hero.primaryCta.label).toBeTruthy();
-    expect(siteConfig.hero.secondaryCta.label).toBeTruthy();
+    expect(navbarConfig.links.some((l) => l.label === 'Fitur' && l.href === '#fitur')).toBe(true);
+    expect(navbarConfig.links.some((l) => l.label === 'Harga' && l.href === '#harga')).toBe(true);
+    expect(navbarConfig.ctaIcon).toBeTruthy();
+
+    expect(heroConfig.phoneFrame.screenshots.length).toBeGreaterThanOrEqual(2);
+    expect(heroConfig.phoneFrame.autoSlideIntervalMs).toBeGreaterThan(0);
+    expect(heroConfig.primaryCta.icon).toBeTruthy();
+    expect(heroConfig.secondaryCta.icon).toBeTruthy();
+
+    expect(pricingConfig.plans).toHaveLength(4);
+    expect(pricingConfig.plans.map((p) => p.monthly.price)).toEqual([
+      'Rp 0',
+      'Rp 15.000 / bln',
+      'Rp 45.000 / bln',
+      'Rp 75.000 / bln',
+    ]);
+    expect(pricingConfig.plans.map((p) => p.yearly.price)).toEqual([
+      'Rp 0',
+      'Rp 162.000 / thn',
+      'Rp 486.000 / thn',
+      'Rp 810.000 / thn',
+    ]);
   });
 });

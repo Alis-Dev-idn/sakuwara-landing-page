@@ -9,7 +9,8 @@ import { HeroSection } from '@/components/organisms/HeroSection';
 import { HowItWorksSection } from '@/components/organisms/HowItWorksSection';
 import { Navbar } from '@/components/organisms/Navbar';
 import { PillarsBentoSection } from '@/components/organisms/PillarsBentoSection';
-import { assetsConfig, siteConfig, type DownloadCtaConfig } from '@/config';
+import { PricingSection } from '@/components/organisms/PricingSection';
+import { assetsConfig, seoConfig, type DownloadCtaConfig } from '@/config';
 
 /**
  * Komponen akar landing page Sakuwara. Menyinkronkan metadata SEO & favicon
@@ -19,10 +20,10 @@ export function App() {
   const [activePlaceholderCta, setActivePlaceholderCta] = useState<DownloadCtaConfig | null>(null);
 
   useEffect(() => {
-    document.title = siteConfig.seo.title;
+    document.title = seoConfig.title;
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-      metaDesc.setAttribute('content', siteConfig.seo.description);
+      metaDesc.setAttribute('content', seoConfig.description);
     }
 
     let faviconLink = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
@@ -44,6 +45,7 @@ export function App() {
           <PillarsBentoSection />
           <FeatureShowcaseSection />
           <HowItWorksSection />
+          <PricingSection onPlaceholderCta={setActivePlaceholderCta} />
           <FaqSection />
           <CtaBannerSection onPlaceholderCta={setActivePlaceholderCta} />
         </main>

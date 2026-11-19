@@ -3,7 +3,7 @@ import type { FeatureModuleConfig } from './types';
 
 /**
  * Katalog terpusat untuk 11 modul fitur aplikasi Sakuwara.
- * Setiap modul terhubung langsung ke aset PNG dan video MP4 aktual di `assets/`.
+ * Setiap modul terhubung langsung ke aset gambar PNG aktual di `assets/`.
  */
 export const featuresConfig: FeatureModuleConfig[] = [
   {
@@ -33,8 +33,6 @@ export const featuresConfig: FeatureModuleConfig[] = [
         caption: 'Ringkasan dompet aktif dan daftar transaksi terbaru',
       },
     ],
-    videoSrc: assetsConfig.modules.dashboard.video,
-    videoLabel: 'Demo Beranda',
   },
   {
     id: 'transaksi',
@@ -63,8 +61,6 @@ export const featuresConfig: FeatureModuleConfig[] = [
         caption: 'Input & detail transaksi per kategori serta dompet',
       },
     ],
-    videoSrc: assetsConfig.modules.transaksi.video,
-    videoLabel: 'Demo Transaksi',
   },
   {
     id: 'dompet',
@@ -93,8 +89,6 @@ export const featuresConfig: FeatureModuleConfig[] = [
         caption: 'Detail transaksi dan mutasi per dompet',
       },
     ],
-    videoSrc: assetsConfig.modules.dompet.video,
-    videoLabel: 'Demo Dompet',
   },
   {
     id: 'anggaran',
@@ -123,8 +117,6 @@ export const featuresConfig: FeatureModuleConfig[] = [
         caption: 'Progres pemakaian per kategori anggaran',
       },
     ],
-    videoSrc: assetsConfig.modules.anggaran.video,
-    videoLabel: 'Demo Anggaran',
   },
   {
     id: 'tabungan',
@@ -153,8 +145,6 @@ export const featuresConfig: FeatureModuleConfig[] = [
         caption: 'Detail setoran & progres pencapaian tabungan',
       },
     ],
-    videoSrc: assetsConfig.modules.tabungan.video,
-    videoLabel: 'Demo Tabungan',
   },
   {
     id: 'tagihan',
@@ -183,8 +173,6 @@ export const featuresConfig: FeatureModuleConfig[] = [
         caption: 'Detail jadwal pembayaran & status lunas periode ini',
       },
     ],
-    videoSrc: assetsConfig.modules.tagihan.video,
-    videoLabel: 'Demo Tagihan',
   },
   {
     id: 'perencanaan',
@@ -236,8 +224,6 @@ export const featuresConfig: FeatureModuleConfig[] = [
         caption: 'Rincian harga beli dan perubahan nilai aset',
       },
     ],
-    videoSrc: assetsConfig.modules.asset.video,
-    videoLabel: 'Demo Aset',
   },
   {
     id: 'laporan',
@@ -322,7 +308,5 @@ export const featuresConfig: FeatureModuleConfig[] = [
         caption: 'Pengelolaan proyeksi biaya antisipatif sebelum realisasi',
       },
     ],
-    videoSrc: assetsConfig.modules.notes.video,
-    videoLabel: 'Demo Notes Asumsi',
   },
 ];

@@ -1,6 +1,6 @@
 /**
- * Kontrak tipe konfigurasi terpusat untuk seluruh teks, tautan, dan aset
- * landing page Sakuwara.
+ * Kontrak tipe konfigurasi terpusat untuk seluruh teks, tautan, ikon tombol,
+ * frame HP, paket harga, dan aset landing page Sakuwara.
  */
 
 export type FeatureCategoryId = 'all' | 'daily' | 'planning' | 'wealth';
@@ -20,13 +20,33 @@ export type FeatureIconKey =
 
 export type PillarIconKey = 'trending-up' | 'wallet' | 'shield-check' | 'file-spreadsheet';
 
+export type ButtonIconKey =
+  | 'smartphone'
+  | 'download'
+  | 'sparkles'
+  | 'arrow-right'
+  | 'arrow-down-right'
+  | 'external-link'
+  | 'check-circle'
+  | 'crown'
+  | 'zap'
+  | 'shield-check'
+  | 'none';
+
 export interface DownloadCtaConfig {
-  id: 'google-play' | 'apk';
+  id: 'google-play' | 'apk' | string;
   label: string;
   sublabel: string;
   href: string;
   isPlaceholder: boolean;
   ariaLabel: string;
+  icon?: ButtonIconKey;
+}
+
+export interface ActionLinkConfig {
+  label: string;
+  href: string;
+  icon?: ButtonIconKey;
 }
 
 export interface NavLinkItem {
@@ -59,6 +79,19 @@ export interface FeatureScreenshot {
   caption: string;
 }
 
+export interface PhoneFrameConfig {
+  autoSlide: boolean;
+  autoSlideIntervalMs: number;
+  badgeLabel: string;
+  prevSlideAriaLabel: string;
+  nextSlideAriaLabel: string;
+  slideDotAriaPrefix: string;
+}
+
+export interface HeroPhoneFrameConfig extends PhoneFrameConfig {
+  screenshots: FeatureScreenshot[];
+}
+
 export interface FeatureModuleConfig {
   id: string;
   name: string;
@@ -70,8 +103,6 @@ export interface FeatureModuleConfig {
   highlights: string[];
   metricBadge: string;
   screenshots: FeatureScreenshot[];
-  videoSrc?: string;
-  videoLabel?: string;
 }
 
 export interface FeatureCategoryFilter {
@@ -83,6 +114,37 @@ export interface StepItemConfig {
   stepNumber: string;
   title: string;
   description: string;
+}
+
+export interface PricingPeriodDetails {
+  price: string;
+  originalPrice?: string;
+  discountTag?: string;
+  periodText: string;
+}
+
+export interface PricingPlanConfig {
+  id: 'free' | 'basic' | 'premium' | 'max';
+  title: string;
+  badge?: string;
+  subtitle: string;
+  accent: 'neutral' | 'sky' | 'emerald' | 'amber';
+  featured?: boolean;
+  monthly: PricingPeriodDetails;
+  yearly: PricingPeriodDetails;
+  features: string[];
+  cta: DownloadCtaConfig;
+}
+
+export interface PricingConfig {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  monthlyLabel: string;
+  yearlyLabel: string;
+  yearlyBadge: string;
+  footnote: string;
+  plans: PricingPlanConfig[];
 }
 
 export interface FaqItemConfig {
@@ -102,102 +164,116 @@ export interface DownloadNoticeConfig {
   helperNote: string;
 }
 
+export interface BrandConfig {
+  name: string;
+  namePrefix: string;
+  nameHighlight: string;
+  nameSuffix: string;
+  tagline: string;
+  logoAlt: string;
+  logoWordmarkAlt: string;
+  homeAriaLabel: string;
+  versionBadge: string;
+}
+
+export interface SeoConfig {
+  title: string;
+  description: string;
+}
+
+export interface NavbarConfig {
+  ariaLabel: string;
+  links: NavLinkItem[];
+  ctaLabel: string;
+  ctaHref: string;
+  ctaIcon: ButtonIconKey;
+  openMenuAriaLabel: string;
+  closeMenuAriaLabel: string;
+}
+
+export interface HeroConfig {
+  sectionAriaLabel: string;
+  eyebrow: string;
+  title: string;
+  titleHighlight: string;
+  subtitle: string;
+  primaryCta: DownloadCtaConfig;
+  secondaryCta: DownloadCtaConfig;
+  exploreCta: ActionLinkConfig;
+  trustPills: string[];
+  floatingMetrics: HeroFloatingMetric[];
+  phoneFrame: HeroPhoneFrameConfig;
+}
+
+export interface PillarsConfig {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  items: PillarItemConfig[];
+}
+
+export interface ShowcaseConfig {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  moduleListAriaLabel: string;
+  mobileModuleListAriaLabel: string;
+  categoryFilterAriaLabel: string;
+  categories: FeatureCategoryFilter[];
+  photoBadgeLabel: string;
+  slideLabelPrefix: string;
+  imageFallbackText: string;
+  emptyFilterTitle: string;
+  emptyFilterResetLabel: string;
+  highlightsHeading: string;
+  phoneFrame: PhoneFrameConfig;
+}
+
+export interface HowItWorksConfig {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  steps: StepItemConfig[];
+}
+
+export interface FaqConfig {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  supportBadge: string;
+  supportText: string;
+  emptyMessage: string;
+  items: FaqItemConfig[];
+}
+
+export interface CtaBannerConfig {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  primaryCta: DownloadCtaConfig;
+  secondaryCta: DownloadCtaConfig;
+  footnote: string;
+}
+
+export interface FooterConfig {
+  description: string;
+  navigationHeading: string;
+  downloadHeading: string;
+  copyrightText: string;
+  releaseNote: string;
+}
+
 export interface SiteConfig {
-  seo: {
-    title: string;
-    description: string;
-  };
-  brand: {
-    name: string;
-    namePrefix: string;
-    nameHighlight: string;
-    nameSuffix: string;
-    tagline: string;
-    logoAlt: string;
-    logoWordmarkAlt: string;
-    homeAriaLabel: string;
-    versionBadge: string;
-  };
-  navbar: {
-    ariaLabel: string;
-    links: NavLinkItem[];
-    ctaLabel: string;
-    openMenuAriaLabel: string;
-    closeMenuAriaLabel: string;
-  };
-  hero: {
-    sectionAriaLabel: string;
-    eyebrow: string;
-    title: string;
-    titleHighlight: string;
-    subtitle: string;
-    primaryCta: DownloadCtaConfig;
-    secondaryCta: DownloadCtaConfig;
-    exploreCta: {
-      label: string;
-      href: string;
-    };
-    trustPills: string[];
-    mockupAlt: string;
-    mockupCaption: string;
-    floatingMetrics: HeroFloatingMetric[];
-  };
-  pillars: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
-    items: PillarItemConfig[];
-  };
-  showcase: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
-    moduleListAriaLabel: string;
-    categoryFilterAriaLabel: string;
-    categories: FeatureCategoryFilter[];
-    videoToggleLabel: string;
-    photoToggleLabel: string;
-    playVideoLabel: string;
-    pauseVideoLabel: string;
-    videoBadgeLabel: string;
-    photoBadgeLabel: string;
-    slideLabelPrefix: string;
-    reducedMotionHint: string;
-    videoFallbackNotice: string;
-    imageFallbackText: string;
-    emptyFilterTitle: string;
-    emptyFilterResetLabel: string;
-    highlightsHeading: string;
-  };
-  howItWorks: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
-    steps: StepItemConfig[];
-  };
-  faq: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
-    supportBadge: string;
-    supportText: string;
-    emptyMessage: string;
-    items: FaqItemConfig[];
-  };
-  ctaBanner: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
-    primaryCta: DownloadCtaConfig;
-    secondaryCta: DownloadCtaConfig;
-    footnote: string;
-  };
-  footer: {
-    description: string;
-    navigationHeading: string;
-    downloadHeading: string;
-    copyrightText: string;
-    releaseNote: string;
-  };
+  seo: SeoConfig;
+  brand: BrandConfig;
+  navbar: NavbarConfig;
+  hero: HeroConfig;
+  pillars: PillarsConfig;
+  showcase: ShowcaseConfig;
+  howItWorks: HowItWorksConfig;
+  pricing: PricingConfig;
+  faq: FaqConfig;
+  ctaBanner: CtaBannerConfig;
+  footer: FooterConfig;
   downloadNotice: DownloadNoticeConfig;
 }

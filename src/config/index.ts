@@ -1,4 +1,15 @@
 export { assetsConfig } from './assetsConfig';
-export { siteConfig } from './siteConfig';
+export { brandConfig, seoConfig } from './brandConfig';
+export { ctaBannerConfig } from './ctaBannerConfig';
+export { downloadNoticeConfig } from './downloadNoticeConfig';
+export { faqConfig } from './faqConfig';
 export { featuresConfig } from './featuresConfig';
+export { footerConfig } from './footerConfig';
+export { heroConfig } from './heroConfig';
+export { howItWorksConfig } from './howItWorksConfig';
+export { navbarConfig } from './navbarConfig';
+export { pillarsConfig } from './pillarsConfig';
+export { pricingConfig } from './pricingConfig';
+export { showcaseConfig } from './showcaseConfig';
+export { siteConfig } from './siteConfig';
 export type * from './types';

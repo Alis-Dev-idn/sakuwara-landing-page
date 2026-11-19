@@ -1,6 +1,5 @@
-import { Video } from 'lucide-react';
 import { FeatureIcon } from '@/components/atoms/FeatureIcon';
-import { siteConfig, type FeatureModuleConfig } from '@/config';
+import type { FeatureModuleConfig } from '@/config';
 
 export interface ModuleTabItemProps {
   module: FeatureModuleConfig;
@@ -9,7 +8,7 @@ export interface ModuleTabItemProps {
 }
 
 /**
- * Item pemilih modul interaktif pada section Showcase 11 Fitur.
+ * Item pemilih modul interaktif pada section Showcase Fitur (tampilan desktop).
  */
 export function ModuleTabItem({ module, isSelected, onSelect }: ModuleTabItemProps) {
   return (
@@ -35,15 +34,7 @@ export function ModuleTabItem({ module, isSelected, onSelect }: ModuleTabItemPro
       </span>
 
       <span className="min-w-0 flex-1">
-        <span className="flex flex-wrap items-center justify-between gap-2">
-          <span className="text-sm font-bold text-ink">{module.name}</span>
-          {module.videoSrc && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-amber-100/90 px-2 py-0.5 text-[11px] font-semibold text-amber-900">
-              <Video className="h-3 w-3" aria-hidden="true" />
-              <span>{siteConfig.showcase.videoToggleLabel}</span>
-            </span>
-          )}
-        </span>
+        <span className="block text-sm font-bold text-ink">{module.name}</span>
         <span className="mt-1 block line-clamp-2 text-xs leading-relaxed text-ink-muted">
           {module.tagline}
         </span>

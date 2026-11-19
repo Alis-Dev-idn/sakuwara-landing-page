@@ -1,10 +1,11 @@
-import { ArrowDownRight, CheckCircle2, Sparkles } from 'lucide-react';
+import { CheckCircle2, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
+import { ActionIcon } from '@/components/atoms/ActionIcon';
 import { Badge } from '@/components/atoms/Badge';
 import { Button } from '@/components/atoms/Button';
 import { DownloadCtaButton } from '@/components/molecules/DownloadCtaButton';
 import { PhoneMockup } from '@/components/molecules/PhoneMockup';
-import { assetsConfig, siteConfig, type DownloadCtaConfig } from '@/config';
+import { heroConfig, type DownloadCtaConfig } from '@/config';
 
 export interface HeroSectionProps {
   onPlaceholderCta: (cta: DownloadCtaConfig) => void;
@@ -12,21 +13,13 @@ export interface HeroSectionProps {
 
 /**
  * Bagian Hero asimetris dengan headline utama, dual CTA unduhan Android,
- * trust pills, serta panggung mockup Beranda Sakuwara dan floating telemetry pills.
+ * trust pills, serta panggung mockup swipeable Sakuwara dan floating telemetry pills.
  */
 export function HeroSection({ onPlaceholderCta }: HeroSectionProps) {
-  const heroScreenshots = [
-    {
-      src: assetsConfig.modules.dashboard.images[0],
-      alt: siteConfig.hero.mockupAlt,
-      caption: siteConfig.hero.mockupCaption,
-    },
-  ];
-
   return (
     <section
       id="beranda"
-      aria-label={siteConfig.hero.sectionAriaLabel}
+      aria-label={heroConfig.sectionAriaLabel}
       className="relative overflow-hidden pt-10 pb-16 sm:pt-14 sm:pb-20 lg:py-20"
     >
       <div
@@ -43,41 +36,41 @@ export function HeroSection({ onPlaceholderCta }: HeroSectionProps) {
         >
           <Badge variant="emerald">
             <Sparkles className="h-3.5 w-3.5 text-brand-gold" aria-hidden="true" />
-            <span>{siteConfig.hero.eyebrow}</span>
+            <span>{heroConfig.eyebrow}</span>
           </Badge>
 
           <h1 className="text-4xl font-extrabold tracking-tight text-ink sm:text-5xl lg:text-6xl lg:leading-[1.1]">
-            {siteConfig.hero.title}{' '}
+            {heroConfig.title}{' '}
             <span className="bg-gradient-to-r from-brand-primary via-emerald-600 to-brand-gold bg-clip-text text-transparent">
-              {siteConfig.hero.titleHighlight}
+              {heroConfig.titleHighlight}
             </span>
           </h1>
 
           <p className="max-w-prose text-base leading-relaxed text-ink-muted sm:text-lg">
-            {siteConfig.hero.subtitle}
+            {heroConfig.subtitle}
           </p>
 
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
             <DownloadCtaButton
-              cta={siteConfig.hero.primaryCta}
+              cta={heroConfig.primaryCta}
               variant="primary"
               size="lg"
               onPlaceholderClick={onPlaceholderCta}
             />
             <DownloadCtaButton
-              cta={siteConfig.hero.secondaryCta}
+              cta={heroConfig.secondaryCta}
               variant="secondary"
               size="lg"
               onPlaceholderClick={onPlaceholderCta}
             />
-            <Button href={siteConfig.hero.exploreCta.href} variant="ghost" size="lg">
-              <span>{siteConfig.hero.exploreCta.label}</span>
-              <ArrowDownRight className="h-4 w-4" aria-hidden="true" />
+            <Button href={heroConfig.exploreCta.href} variant="ghost" size="lg">
+              <span>{heroConfig.exploreCta.label}</span>
+              <ActionIcon name={heroConfig.exploreCta.icon ?? 'arrow-down-right'} />
             </Button>
           </div>
 
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-2.5 pt-2">
-            {siteConfig.hero.trustPills.map((pill) => (
+            {heroConfig.trustPills.map((pill) => (
               <li
                 key={pill}
                 className="inline-flex items-center gap-2 text-sm font-medium text-ink-muted"
@@ -101,15 +94,12 @@ export function HeroSection({ onPlaceholderCta }: HeroSectionProps) {
           />
 
           <PhoneMockup
-            screenshots={heroScreenshots}
-            videoSrc={assetsConfig.modules.dashboard.video}
-            videoLabel={siteConfig.showcase.videoBadgeLabel}
-            allowVideoToggle={false}
-            caption={siteConfig.hero.mockupCaption}
+            screenshots={heroConfig.phoneFrame.screenshots}
+            frameConfig={heroConfig.phoneFrame}
           />
 
           <div className="mt-4 grid w-full max-w-sm grid-cols-2 gap-3 lg:hidden">
-            {siteConfig.hero.floatingMetrics.map((metric) => (
+            {heroConfig.floatingMetrics.map((metric) => (
               <div
                 key={metric.id}
                 className="rounded-2xl border border-slate-200/90 bg-surface p-3 shadow-sm"
@@ -121,8 +111,8 @@ export function HeroSection({ onPlaceholderCta }: HeroSectionProps) {
                   {metric.value}
                 </span>
                 <span
-                  className={`mt-0.5 block text-xs font-semibold ${
-                    metric.tone === 'emerald' ? 'text-brand-primary' : 'text-brand-gold'
+                  className={`mt-0.5 block text-[11px] font-medium ${
+                    metric.tone === 'emerald' ? 'text-brand-primary' : 'text-amber-700'
                   }`}
                 >
                   {metric.trend}
@@ -131,30 +121,30 @@ export function HeroSection({ onPlaceholderCta }: HeroSectionProps) {
             ))}
           </div>
 
-          {siteConfig.hero.floatingMetrics[0] && (
-            <div className="hidden lg:block absolute top-14 -left-6 z-20 max-w-[205px] rounded-2xl border border-emerald-200/80 bg-white/95 p-3.5 shadow-lg shadow-emerald-950/10 backdrop-blur-sm">
+          {heroConfig.floatingMetrics[0] && (
+            <div className="pointer-events-none absolute top-14 -left-4 hidden rounded-2xl border border-slate-200/90 bg-white/95 p-3.5 shadow-xl shadow-slate-900/10 backdrop-blur-md lg:block">
               <span className="block text-[11px] font-semibold uppercase tracking-wide text-ink-muted">
-                {siteConfig.hero.floatingMetrics[0].label}
+                {heroConfig.floatingMetrics[0].label}
               </span>
-              <span className="mt-1 block text-base font-extrabold tabular-nums text-ink">
-                {siteConfig.hero.floatingMetrics[0].value}
+              <span className="mt-0.5 block text-base font-extrabold tabular-nums text-ink">
+                {heroConfig.floatingMetrics[0].value}
               </span>
-              <span className="mt-0.5 block text-xs font-semibold text-brand-primary">
-                {siteConfig.hero.floatingMetrics[0].trend}
+              <span className="mt-0.5 inline-flex items-center rounded-full bg-emerald-soft px-2 py-0.5 text-[11px] font-semibold text-brand-primary">
+                {heroConfig.floatingMetrics[0].trend}
               </span>
             </div>
           )}
 
-          {siteConfig.hero.floatingMetrics[1] && (
-            <div className="hidden lg:block absolute right-0 bottom-24 z-20 max-w-[195px] rounded-2xl border border-amber-200/90 bg-white/95 p-3.5 shadow-lg shadow-amber-950/10 backdrop-blur-sm">
+          {heroConfig.floatingMetrics[1] && (
+            <div className="pointer-events-none absolute -right-2 bottom-24 hidden rounded-2xl border border-amber-200/90 bg-white/95 p-3.5 shadow-xl shadow-slate-900/10 backdrop-blur-md lg:block">
               <span className="block text-[11px] font-semibold uppercase tracking-wide text-ink-muted">
-                {siteConfig.hero.floatingMetrics[1].label}
+                {heroConfig.floatingMetrics[1].label}
               </span>
-              <span className="mt-1 block text-base font-extrabold tabular-nums text-ink">
-                {siteConfig.hero.floatingMetrics[1].value}
+              <span className="mt-0.5 block text-base font-extrabold tabular-nums text-ink">
+                {heroConfig.floatingMetrics[1].value}
               </span>
-              <span className="mt-0.5 block text-xs font-semibold text-brand-gold">
-                {siteConfig.hero.floatingMetrics[1].trend}
+              <span className="mt-0.5 inline-flex items-center rounded-full bg-amber-soft px-2 py-0.5 text-[11px] font-semibold text-amber-800">
+                {heroConfig.floatingMetrics[1].trend}
               </span>
             </div>
           )}

@@ -1,0 +1,156 @@
+import type { PricingConfig } from './types';
+
+/**
+ * Konfigurasi seksi Harga & Paket Langganan Sakuwara.
+ * Nilai paket, harga, diskon, dan daftar fitur diselaraskan dengan
+ * `monage-flutter/lib/core/config/subscription_plans_config.dart`.
+ */
+export const pricingConfig: PricingConfig = {
+  eyebrow: 'Pilih Paket Sakuwara',
+  title: 'Mulai Gratis, Upgrade Kapan Saja Sesuai Kebutuhan',
+  subtitle: 'Tanpa Iklan • Aman & Terenkripsi. Pilih siklus bulanan atau hemat ekstra 10% untuk langganan tahunan.',
+  monthlyLabel: 'Bulanan',
+  yearlyLabel: 'Tahunan',
+  yearlyBadge: 'Ekstra 10%',
+  footnote: 'Seluruh harga dan kuota paket dapat disesuaikan terpusat di src/config/pricingConfig.ts.',
+  plans: [
+    {
+      id: 'free',
+      title: 'GRATIS',
+      subtitle: 'Paket awal gratis atau fallback pasca-trial',
+      accent: 'neutral',
+      monthly: {
+        price: 'Rp 0',
+        periodText: 'Gratis Terbatas',
+      },
+      yearly: {
+        price: 'Rp 0',
+        periodText: 'Gratis Terbatas',
+      },
+      features: [
+        'Maksimal 25 Transaksi / bulan',
+        'Maksimal 1 Dompet & 1 Pos Tabungan',
+        'Maksimal 5 Kategori & 5 Pos Anggaran',
+        'Tanpa Tagihan, Aset & Notes Asumsi',
+        'Tanpa Foto Bukti Struk & Warna Custom',
+        'Ekspor Excel (.xlsx) Dinonaktifkan',
+      ],
+      cta: {
+        id: 'plan-free',
+        label: 'Mulai Gratis',
+        sublabel: 'Paket Gratis',
+        href: '#unduh',
+        isPlaceholder: false,
+        ariaLabel: 'Mulai menggunakan paket Sakuwara Gratis',
+        icon: 'arrow-right',
+      },
+    },
+    {
+      id: 'basic',
+      title: 'BASIC',
+      subtitle: 'Pencatatan kas harian mandiri tanpa batas',
+      accent: 'sky',
+      monthly: {
+        price: 'Rp 15.000 / bln',
+        originalPrice: 'Rp 30.000',
+        discountTag: 'Hemat 50%',
+        periodText: 'Tagihan bulanan',
+      },
+      yearly: {
+        price: 'Rp 162.000 / thn',
+        originalPrice: 'Rp 360.000',
+        discountTag: 'Hemat 55%',
+        periodText: 'Setara Rp 13.500/bln • Ekstra 10%',
+      },
+      features: [
+        'Unlimited Transaksi',
+        'Maksimal 3 Dompet & 3 Pos Tabungan',
+        'Kategori & Anggaran Tanpa Batas',
+        'Maksimal 3 Tagihan Rutin',
+        'Pie Chart & Export Data (.skw)',
+      ],
+      cta: {
+        id: 'plan-basic',
+        label: 'Pilih Basic',
+        sublabel: 'Paket Basic',
+        href: '#unduh',
+        isPlaceholder: false,
+        ariaLabel: 'Pilih paket Sakuwara Basic',
+        icon: 'zap',
+      },
+    },
+    {
+      id: 'premium',
+      title: 'PREMIUM',
+      badge: 'POPULER & REKOMENDASI',
+      subtitle: 'Pilihan terbaik keluarga dan pengelolaan multi-pos',
+      accent: 'emerald',
+      featured: true,
+      monthly: {
+        price: 'Rp 45.000 / bln',
+        originalPrice: 'Rp 89.000',
+        discountTag: 'Hemat 49%',
+        periodText: 'Tagihan bulanan',
+      },
+      yearly: {
+        price: 'Rp 486.000 / thn',
+        originalPrice: 'Rp 1.068.000',
+        discountTag: 'Hemat 54%',
+        periodText: 'Setara Rp 40.500/bln • Ekstra 10%',
+      },
+      features: [
+        'Seluruh Fitur Paket Basic',
+        'Unlimited Dompet, Tabungan & Transfer Saldo',
+        'Unlimited Tagihan Berulang',
+        'Lampiran Foto Bukti Struk Terkompresi (Transaksi & Tagihan)',
+        'Warna Custom Bebas (#HEX)',
+        'Donut Badge Chart & Maksimal 3 Aset + 5 Notes Asumsi',
+      ],
+      cta: {
+        id: 'plan-premium',
+        label: 'Pilih Premium',
+        sublabel: 'Paket Premium',
+        href: '#unduh',
+        isPlaceholder: false,
+        ariaLabel: 'Pilih paket Sakuwara Premium',
+        icon: 'sparkles',
+      },
+    },
+    {
+      id: 'max',
+      title: 'MAX',
+      badge: 'ALL-ACCESS LENGKAP',
+      subtitle: 'Kekayaan bersih, manajemen aset, dan notes proyeksi',
+      accent: 'amber',
+      monthly: {
+        price: 'Rp 75.000 / bln',
+        originalPrice: 'Rp 119.000',
+        discountTag: 'Hemat 37%',
+        periodText: 'Tagihan bulanan',
+      },
+      yearly: {
+        price: 'Rp 810.000 / thn',
+        originalPrice: 'Rp 1.428.000',
+        discountTag: 'Hemat 43%',
+        periodText: 'Setara Rp 67.500/bln • Ekstra 10%',
+      },
+      features: [
+        'Seluruh Fitur Paket Premium',
+        'Unlimited Manajemen Aset, Revaluasi & Dokumen Aset',
+        'Unlimited Notes Pengeluaran Asumsi & Rincian Item',
+        'Multi-series Spline Line Chart',
+        'Multi-Sheet Excel (.xlsx) Export',
+        'Dukungan Prioritas',
+      ],
+      cta: {
+        id: 'plan-max',
+        label: 'Pilih Max',
+        sublabel: 'Paket Max',
+        href: '#unduh',
+        isPlaceholder: false,
+        ariaLabel: 'Pilih paket Sakuwara Max',
+        icon: 'crown',
+      },
+    },
+  ],
+};
