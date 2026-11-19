@@ -11,9 +11,11 @@ import {
   Zap,
   type LucideIcon,
 } from 'lucide-react';
-import type { ButtonIconKey } from '@/config';
+import type { ButtonIconKey, ButtonPresetIconKey } from '@/config';
 
-const ICON_MAP: Record<Exclude<ButtonIconKey, 'none' | 'google-play'>, LucideIcon> = {
+type LucidePresetKey = Exclude<ButtonPresetIconKey, 'none' | 'google-play'>;
+
+const ICON_MAP: Record<LucidePresetKey, LucideIcon> = {
   smartphone: Smartphone,
   download: Download,
   sparkles: Sparkles,
@@ -26,18 +28,42 @@ const ICON_MAP: Record<Exclude<ButtonIconKey, 'none' | 'google-play'>, LucideIco
   'shield-check': ShieldCheck,
 };
 
+function isImagePathOrUrl(value: string): boolean {
+  return (
+    value.startsWith('/') ||
+    value.startsWith('./') ||
+    value.startsWith('../') ||
+    value.startsWith('http://') ||
+    value.startsWith('https://') ||
+    value.startsWith('data:') ||
+    /\.(png|jpe?g|svg|webp|gif|ico)(\?.*)?$/i.test(value)
+  );
+}
+
 export interface ActionIconProps {
   name?: ButtonIconKey;
   className?: string;
 }
 
 /**
- * Pemeta ikon tombol yang dapat dikonfigurasi dari `src/config/`.
- * Mendukung ikon Lucide maupun ikon brand kustom (`google-play`).
+ * Pemeta ikon tombol fleksibel dari `src/config/`.
+ * Mendukung preset Lucide, logo `'google-play'`, maupun ikon gambar custom
+ * (hasil import aset `@assets/...`, path/URL gambar, atau `{ imageSrc, alt }`).
  */
 export function ActionIcon({ name = 'smartphone', className = 'h-4 w-4 shrink-0' }: ActionIconProps) {
-  if (name === 'none') {
+  if (!name || name === 'none') {
     return null;
+  }
+
+  if (typeof name === 'object' && 'imageSrc' in name) {
+    return (
+      <img
+        src={name.imageSrc}
+        alt={name.alt ?? ''}
+        aria-hidden={name.alt ? undefined : true}
+        className={`${className} object-contain`}
+      />
+    );
   }
 
   if (name === 'google-play') {
@@ -68,10 +94,21 @@ export function ActionIcon({ name = 'smartphone', className = 'h-4 w-4 shrink-0'
     );
   }
 
-  const IconComponent = ICON_MAP[name];
-  if (!IconComponent) {
-    return null;
+  if (Object.prototype.hasOwnProperty.call(ICON_MAP, name)) {
+    const IconComponent = ICON_MAP[name as LucidePresetKey];
+    return <IconComponent className={className} aria-hidden="true" />;
   }
 
-  return <IconComponent className={className} aria-hidden="true" />;
+  if (isImagePathOrUrl(name)) {
+    return (
+      <img
+        src={name}
+        alt=""
+        aria-hidden="true"
+        className={`${className} object-contain`}
+      />
+    );
+  }
+
+  return <Smartphone className={className} aria-hidden="true" />;
 }

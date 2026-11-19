@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { App } from '@/App';
+import { ActionIcon } from '@/components/atoms/ActionIcon';
 import {
   faqConfig,
   heroConfig,
@@ -112,5 +113,17 @@ describe('Landing Page Sakuwara', () => {
     expect(
       screen.getByRole('button', { name: navbarConfig.closeMenuAriaLabel }),
     ).toHaveAttribute('aria-expanded', 'true');
+  });
+
+  it('merender ikon custom berupa path gambar maupun objek imageSrc pada ActionIcon', () => {
+    const { container, rerender } = render(<ActionIcon name="/icons/custom-store.png" />);
+    const imgByPath = container.querySelector('img');
+    expect(imgByPath).toHaveAttribute('src', '/icons/custom-store.png');
+
+    rerender(<ActionIcon name={{ imageSrc: 'https://example.com/badge.svg', alt: 'Store' }} />);
+    expect(screen.getByRole('img', { name: 'Store' })).toHaveAttribute(
+      'src',
+      'https://example.com/badge.svg',
+    );
   });
 });

@@ -20,7 +20,7 @@ export type FeatureIconKey =
 
 export type PillarIconKey = 'trending-up' | 'wallet' | 'shield-check' | 'file-spreadsheet';
 
-export type ButtonIconKey =
+export type ButtonPresetIconKey =
   | 'google-play'
   | 'smartphone'
   | 'download'
@@ -33,6 +33,16 @@ export type ButtonIconKey =
   | 'zap'
   | 'shield-check'
   | 'none';
+
+export interface CustomImageIconConfig {
+  imageSrc: string;
+  alt?: string;
+}
+
+export type ButtonIconKey =
+  | ButtonPresetIconKey
+  | CustomImageIconConfig
+  | (string & {});
 
 export interface DownloadCtaConfig {
   id: 'google-play' | 'apk' | string;
