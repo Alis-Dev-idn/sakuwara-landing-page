@@ -5,6 +5,8 @@ import type { PricingConfig } from './types';
  * Nilai paket, harga, diskon, dan daftar fitur diselaraskan dengan
  * `monage-flutter/lib/core/config/subscription_plans_config.dart`.
  */
+const DEFAULT_WHATSAPP_NUMBER = '6285157853354'; // Ganti dengan nomor WhatsApp admin Sakuwara
+
 export const pricingConfig: PricingConfig = {
   eyebrow: 'Pilih Paket Sakuwara',
   title: 'Mulai Gratis, Upgrade Kapan Saja Sesuai Kebutuhan',
@@ -12,7 +14,8 @@ export const pricingConfig: PricingConfig = {
   monthlyLabel: 'Bulanan',
   yearlyLabel: 'Tahunan',
   yearlyBadge: 'Ekstra 10%',
-  footnote: 'Seluruh harga dan kuota paket dapat disesuaikan terpusat di src/config/pricingConfig.ts.',
+  // footnote: 'Seluruh harga dan kuota paket dapat disesuaikan terpusat di src/config/pricingConfig.ts.',
+  footnote: '',
   plans: [
     {
       id: 'free',
@@ -30,10 +33,7 @@ export const pricingConfig: PricingConfig = {
       features: [
         'Maksimal 25 Transaksi / bulan',
         'Maksimal 1 Dompet & 1 Pos Tabungan',
-        'Maksimal 5 Kategori & 5 Pos Anggaran',
-        'Tanpa Tagihan, Aset & Notes Asumsi',
-        'Tanpa Foto Bukti Struk & Warna Custom',
-        'Ekspor Excel (.xlsx) Dinonaktifkan',
+        'Maksimal 5 Kategori & 5 Pos Anggaran'
       ],
       cta: {
         id: 'plan-free',
@@ -67,7 +67,7 @@ export const pricingConfig: PricingConfig = {
         'Maksimal 3 Dompet & 3 Pos Tabungan',
         'Kategori & Anggaran Tanpa Batas',
         'Maksimal 3 Tagihan Rutin',
-        'Pie Chart & Export Data (.skw)',
+        'Pie Chart & Export Data',
       ],
       cta: {
         id: 'plan-basic',
@@ -75,8 +75,13 @@ export const pricingConfig: PricingConfig = {
         sublabel: 'Paket Basic',
         href: '#unduh',
         isPlaceholder: false,
-        ariaLabel: 'Pilih paket Sakuwara Basic',
+        ariaLabel: 'Pilih paket Sakuwara Basic via WhatsApp',
         icon: 'zap',
+        whatsapp: {
+          nomor: DEFAULT_WHATSAPP_NUMBER,
+          message:
+            'Halo Kak, saya tertarik berlangganan paket Basic Sakuwara. Boleh dibantu informasi cara aktivasinya?',
+        },
       },
     },
     {
@@ -102,9 +107,9 @@ export const pricingConfig: PricingConfig = {
         'Seluruh Fitur Paket Basic',
         'Unlimited Dompet, Tabungan & Transfer Saldo',
         'Unlimited Tagihan Berulang',
-        'Lampiran Foto Bukti Struk Terkompresi (Transaksi & Tagihan)',
+        'Lampiran Foto Bukti Struk (Transaksi & Tagihan)',
         'Warna Custom Bebas (#HEX)',
-        'Donut Badge Chart & Maksimal 3 Aset + 5 Notes Asumsi',
+        'Maksimal 3 Aset + 5 Notes Asumsi',
       ],
       cta: {
         id: 'plan-premium',
@@ -112,8 +117,13 @@ export const pricingConfig: PricingConfig = {
         sublabel: 'Paket Premium',
         href: '#unduh',
         isPlaceholder: false,
-        ariaLabel: 'Pilih paket Sakuwara Premium',
+        ariaLabel: 'Pilih paket Sakuwara Premium via WhatsApp',
         icon: 'sparkles',
+        whatsapp: {
+          nomor: DEFAULT_WHATSAPP_NUMBER,
+          message:
+            'Halo Kak, saya tertarik berlangganan paket Premium Sakuwara. Boleh dibantu informasi cara aktivasinya?',
+        },
       },
     },
     {
@@ -139,7 +149,7 @@ export const pricingConfig: PricingConfig = {
         'Unlimited Manajemen Aset, Revaluasi & Dokumen Aset',
         'Unlimited Notes Pengeluaran Asumsi & Rincian Item',
         'Multi-series Spline Line Chart',
-        'Multi-Sheet Excel (.xlsx) Export',
+        'Multi-Sheet Excel Export',
         'Dukungan Prioritas',
       ],
       cta: {
@@ -148,8 +158,13 @@ export const pricingConfig: PricingConfig = {
         sublabel: 'Paket Max',
         href: '#unduh',
         isPlaceholder: false,
-        ariaLabel: 'Pilih paket Sakuwara Max',
+        ariaLabel: 'Pilih paket Sakuwara Max via WhatsApp',
         icon: 'crown',
+        whatsapp: {
+          nomor: DEFAULT_WHATSAPP_NUMBER,
+          message:
+            'Halo Kak, saya tertarik berlangganan paket Max Sakuwara. Boleh dibantu informasi cara aktivasinya?',
+        },
       },
     },
   ],

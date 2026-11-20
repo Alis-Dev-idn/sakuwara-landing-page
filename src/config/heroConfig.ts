@@ -25,7 +25,7 @@ export const heroConfig: HeroConfig = {
     id: 'apk',
     label: 'Download APK',
     sublabel: 'Langsung Unduh',
-    href: '',
+    href: 'https://drive.google.com/file/d/1L7WK-Ft38ZUAIJkWdHWIfqCl2hCZTYZa/view?usp=sharing',
     isPlaceholder: false,
     ariaLabel: 'Unduh file instalasi APK Sakuwara Android',
     icon: 'download',

@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { App } from '@/App';
 import { ActionIcon } from '@/components/atoms/ActionIcon';
 import {
+  buildWhatsAppUrl,
   faqConfig,
   heroConfig,
   navbarConfig,
@@ -125,5 +126,19 @@ describe('Landing Page Sakuwara', () => {
       'src',
       'https://example.com/badge.svg',
     );
+  });
+
+  it('mengarahkan tombol pilihan paket Basic, Premium, dan Max ke tautan WhatsApp', () => {
+    render(<App />);
+
+    const freeLink = screen.getByRole('link', { name: pricingConfig.plans[0]!.cta.ariaLabel });
+    expect(freeLink).toHaveAttribute('href', '#unduh');
+
+    for (const plan of pricingConfig.plans.slice(1)) {
+      const link = screen.getByRole('link', { name: plan.cta.ariaLabel });
+      expect(link).toHaveAttribute('href', buildWhatsAppUrl(plan.cta.whatsapp!));
+      expect(link).toHaveAttribute('target', '_blank');
+      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+    }
   });
 });

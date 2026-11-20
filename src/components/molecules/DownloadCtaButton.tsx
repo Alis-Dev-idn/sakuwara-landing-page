@@ -1,6 +1,6 @@
 import { ActionIcon } from '@/components/atoms/ActionIcon';
 import { Button, type ButtonVariant } from '@/components/atoms/Button';
-import type { DownloadCtaConfig } from '@/config';
+import { buildWhatsAppUrl, type DownloadCtaConfig } from '@/config';
 
 export interface DownloadCtaButtonProps {
   cta: DownloadCtaConfig;
@@ -38,11 +38,12 @@ export function DownloadCtaButton({
     );
   }
 
-  const isInternalAnchor = cta.href.startsWith('#') || cta.href === '';
+  const resolvedHref = cta.whatsapp ? buildWhatsAppUrl(cta.whatsapp) : cta.href;
+  const isInternalAnchor = resolvedHref.startsWith('#') || resolvedHref === '';
 
   return (
     <Button
-      href={cta.href}
+      href={resolvedHref}
       target={isInternalAnchor ? undefined : '_blank'}
       rel={isInternalAnchor ? undefined : 'noopener noreferrer'}
       variant={variant}

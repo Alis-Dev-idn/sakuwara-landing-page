@@ -18,5 +18,5 @@ export const brandConfig: BrandConfig = {
   logoAlt: 'Logo perisai Sakuwara',
   logoWordmarkAlt: 'Logo dan tulisan Sakuwara',
   homeAriaLabel: 'Kembali ke bagian atas Sakuwara',
-  versionBadge: 'Android • Rilis Publik v1.0',
+  versionBadge: 'Android • Rilis Publik v2.5.0',
 };

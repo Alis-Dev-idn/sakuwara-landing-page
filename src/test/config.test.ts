@@ -3,6 +3,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   assetsConfig,
+  buildWhatsAppUrl,
   featuresConfig,
   heroConfig,
   navbarConfig,
@@ -81,5 +82,23 @@ describe('Konfigurasi terpusat & pemetaan aset root', () => {
       'Rp 486.000 / thn',
       'Rp 810.000 / thn',
     ]);
+  });
+
+  it('mengonfigurasi tautan WhatsApp dengan format { nomor, message } untuk paket Basic hingga Max', () => {
+    const [freePlan, basicPlan, premiumPlan, maxPlan] = pricingConfig.plans;
+
+    expect(freePlan?.cta.whatsapp).toBeUndefined();
+    for (const paidPlan of [basicPlan, premiumPlan, maxPlan]) {
+      expect(paidPlan?.cta.whatsapp).toBeDefined();
+      expect(paidPlan?.cta.whatsapp?.nomor.trim().length).toBeGreaterThan(0);
+      expect(paidPlan?.cta.whatsapp?.message.trim().length).toBeGreaterThan(0);
+    }
+
+    expect(
+      buildWhatsAppUrl({
+        nomor: '0812-3456-7890',
+        message: 'Halo Sakuwara',
+      }),
+    ).toBe('https://wa.me/6281234567890?text=Halo%20Sakuwara');
   });
 });

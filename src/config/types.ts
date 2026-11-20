@@ -44,6 +44,11 @@ export type ButtonIconKey =
   | CustomImageIconConfig
   | (string & {});
 
+export interface WhatsAppCtaConfig {
+  nomor: string;
+  message: string;
+}
+
 export interface DownloadCtaConfig {
   id: 'google-play' | 'apk' | string;
   label: string;
@@ -52,6 +57,7 @@ export interface DownloadCtaConfig {
   isPlaceholder: boolean;
   ariaLabel: string;
   icon?: ButtonIconKey;
+  whatsapp?: WhatsAppCtaConfig;
 }
 
 export interface ActionLinkConfig {

@@ -12,4 +12,5 @@ export { pillarsConfig } from './pillarsConfig';
 export { pricingConfig } from './pricingConfig';
 export { showcaseConfig } from './showcaseConfig';
 export { siteConfig } from './siteConfig';
+export { buildWhatsAppUrl } from './whatsapp';
 export type * from './types';
